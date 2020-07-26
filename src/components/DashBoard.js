@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import { Paper, Typography, List, ListItem, ListItemText } from '@material-ui/core';
+import { Paper, Typography, List, ListItem, ListItemText, Chip } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -8,7 +8,8 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(3, 2)
     },
     flex: {
-        display: 'flex'
+        display: 'flex',
+        alignItems: 'center'
     },
     topicsWindow: {
         width: '30%',
@@ -17,7 +18,8 @@ const useStyles = makeStyles(theme => ({
     },
     chatWindow: {
         width: '30%',
-        height: '300px'
+        height: '300px',
+        padding: '20px'
     },
     chatBox: {
         width: '85%'
@@ -51,7 +53,14 @@ function DashBoard(props) {
                         </List>
                     </div>
                     <div className={classes.chatWindow}>
-                        
+                        {
+                            [{from: 'user', msg: 'hello'}].map((chat, index) => (
+                                <div className={classes.flex} key={index}>
+                                    <Chip label={chat.from} className={classes.chip}/>
+                                    <Typography variant='p'> {chat.msg}</Typography>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
                 <div className={classes.flex}>
