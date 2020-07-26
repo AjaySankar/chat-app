@@ -34,6 +34,8 @@ function DashBoard(props) {
     const classes = useStyles()
     const [textValue, changeTextValue] = useState('')
     const [allChats] = useContext(CTX)
+    const topics = Object.keys(allChats)
+    const [activteTopic, changeActiveTopic] = useState(topics[0])
     return (
         <div>
             <Paper className={classes.root}>
@@ -41,14 +43,14 @@ function DashBoard(props) {
                     Chat App
                 </Typography>
                 <Typography variant="h5" component="h5">
-                    Topic Placeholder
+                    {activteTopic}
                 </Typography>
                 <div className={classes.flex}>
                     <div className={classes.topicsWindow}>
                         <List>
                             {
-                                ['topic1', 'topic1', 'topic1'].map(topic => (
-                                    <ListItem key={topic} button>
+                                topics.map(topic => (
+                                    <ListItem onClick={e => changeActiveTopic(e.target.innerText)} key={topic} button>
                                         <ListItemText primary={topic}/>
                                     </ListItem>
                                 ))
@@ -57,10 +59,10 @@ function DashBoard(props) {
                     </div>
                     <div className={classes.chatWindow}>
                         {
-                            [{from: 'user', msg: 'hello'}].map((chat, index) => (
+                            allChats[activteTopic].map((chat, index) => (
                                 <div className={classes.flex} key={index}>
                                     <Chip label={chat.from} className={classes.chip}/>
-                                    <Typography variant='p'> {chat.msg}</Typography> 
+                                    <Typography variant='body1' gutterBottom> {chat.msg}</Typography> 
                                 </div>
                             ))
                         }
