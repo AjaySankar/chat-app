@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { Paper, Typography, List, ListItem, ListItemText, Chip, Button, TextField } from '@material-ui/core';
+import { CTX } from './Store';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 function DashBoard(props) {
     const classes = useStyles()
     const [textValue, changeTextValue] = useState('')
+    const [allChats] = useContext(CTX)
     return (
         <div>
             <Paper className={classes.root}>
