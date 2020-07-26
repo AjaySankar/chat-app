@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
-import { Paper, Typography, List, ListItem, ListItemText, Chip } from '@material-ui/core';
+import { Paper, Typography, List, ListItem, ListItemText, Chip, Button, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 function DashBoard(props) {
     const classes = useStyles()
+    const [textValue, changeTextValue] = useState('')
     return (
         <div>
             <Paper className={classes.root}>
@@ -57,14 +58,17 @@ function DashBoard(props) {
                             [{from: 'user', msg: 'hello'}].map((chat, index) => (
                                 <div className={classes.flex} key={index}>
                                     <Chip label={chat.from} className={classes.chip}/>
-                                    <Typography variant='p'> {chat.msg}</Typography>
+                                    <Typography variant='p'> {chat.msg}</Typography> 
                                 </div>
                             ))
                         }
                     </div>
                 </div>
                 <div className={classes.flex}>
-
+                    <TextField label="Send a chat" className={classes.chatBox} value={textValue} onChange={(e) => changeTextValue(e.target.value)}/>
+                    <Button variant="contained" color="primary">
+                        SEND
+                    </Button>
                 </div>
             </Paper>
         </div>
