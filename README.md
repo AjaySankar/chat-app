@@ -1,3 +1,9 @@
+## About Project
+
+This is a chat application using React Hooks + Material UI + Web Sockets
+
+Run `npm start` and  `npm run server`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
