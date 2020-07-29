@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
 function DashBoard(props) {
     const classes = useStyles()
     const [textValue, changeTextValue] = useState('')
-    const [allChats] = useContext(CTX)
+    const {allChats, sendChatAction, user} = useContext(CTX)
+    window.console.log(useContext(CTX))
     const topics = Object.keys(allChats)
     const [activteTopic, changeActiveTopic] = useState(topics[0])
     return (
@@ -70,7 +71,16 @@ function DashBoard(props) {
                 </div>
                 <div className={classes.flex}>
                     <TextField label="Send a chat" className={classes.chatBox} value={textValue} onChange={(e) => changeTextValue(e.target.value)}/>
-                    <Button variant="contained" color="primary">
+                    <Button 
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        value={textValue}
+                        onClick={() => {
+                            sendChatAction({from: user, msg: textValue, topic: activteTopic});
+                            changeTextValue('')
+                        }}
+                    >
                         SEND
                     </Button>
                 </div>
