@@ -34,7 +34,6 @@ function DashBoard(props) {
     const classes = useStyles()
     const [textValue, changeTextValue] = useState('')
     const {allChats, sendChatAction, user} = useContext(CTX)
-    window.console.log(useContext(CTX))
     const topics = Object.keys(allChats)
     const [activteTopic, changeActiveTopic] = useState(topics[0])
     return (

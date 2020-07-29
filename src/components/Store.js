@@ -15,15 +15,6 @@ function reducer(state, action) {
     const {from, msg, topic} = action.payload
     switch(action.type) {
         case 'RECEIVE_MESSAGE':
-            // window.console.log(state)
-            // window.console.log(action.payload)
-            // window.console.log({
-            //     ...state,
-            //     [topic]: [
-            //         ...state[topic],
-            //         { from,msg }
-            //     ]
-            // })
             return {
                 ...state,
                 [topic]: [
@@ -50,8 +41,6 @@ function Store(props) {
     if(!socket) {
         socket = io(':3001')
         socket.on('chat message', (msg) => {
-            // window.console.log(user)
-            // window.console.log(msg)
             dispatch({type: 'RECEIVE_MESSAGE', payload: msg})
         })
     }
